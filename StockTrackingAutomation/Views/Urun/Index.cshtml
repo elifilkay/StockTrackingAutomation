@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<StockTrackingAutomation.Models.Urunler>
+
+@{
+    ViewBag.Title = "Ürünler Listesi";
+}
+
+<h2>Ürünler Listesi</h2>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["SuccessMessage"]</strong>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@TempData["ErrorMessage"]</strong>
+    </div>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th>Kategori</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urun in Model)
+        {
+            <tr>
+                <td>@urun.UrunId</td>
+                <td>@urun.UrunAd</td>
+                <td>@urun.Fiyat</td>
+                <td>@(urun.Kategoriler != null ? urun.Kategoriler.KategoriAd : "Kategori Yok")</td>
+                <td>
+                    <a href="@Url.Action("Guncelle", "Urun", new { id = urun.UrunId })" class="btn btn-warning">Güncelle</a>
+                    <a href="@Url.Action("Sil", "Urun", new { id = urun.UrunId })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Ekle", "Urun")" class="btn btn-primary">Yeni Ürün Ekle</a>

@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Ana Sayfa";
+}
+
+<div class="container mt-4">
+    <div class="jumbotron">
+        <h1 class="display-4">Hoş Geldiniz!</h1>
+        <p class="lead">Bu, stok takip otomasyon sistemimizin ana sayfasıdır.</p>
+        <hr class="my-4">
+        <p>@ViewBag.Message</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Toplam Ürün Sayısı</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.TotalProducts</h5>
+                    <p class="card-text">Sistemde kayıtlı toplam ürün sayısı.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Toplam Kategori Sayısı</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.TotalCategories</h5>
+                    <p class="card-text">Sistemde kayıtlı toplam kategori sayısı.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Toplam Müşteri Sayısı</div>
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.TotalCustomers</h5>
+                    <p class="card-text">Sistemde kayıtlı toplam müşteri sayısı.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<dynamic>
+
+@{
+    ViewBag.Title = "Satışlar Listesi";
+}
+
+<h2>Satışlar Listesi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>SatışId</th>
+            <th>Müşteri Adı-Soyadı</th>
+            <th>Ürün Adı</th>
+            <th>Miktar</th>
+            <th>Toplam Tutar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var satis in Model)
+        {
+            <tr>
+                <td>@satis.SatisId</td>
+                <td>@satis.MusteriAd</td>
+                <td>@satis.UrunAd</td>
+                <td>@satis.Miktar</td>
+                <td>@satis.ToplamTutar</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Ekle")" class="btn btn-primary">Yeni Satış Ekle</a>

@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model StockTrackingAutomation.Models.Urunler
+
+@{
+    ViewBag.Title = "Ürün Güncelle";
+}
+
+<h2>Ürün Güncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.UrunId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UrunAd, "Ürün Adı")
+        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Fiyat, "Fiyat")
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control", type = "number", step = "0.01" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.KategoriId, "Kategori")
+        @Html.DropDownList("KategoriId", ViewBag.Kategoriler as SelectList, "Kategori Seçiniz", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Güncelle</button>
+    <a href="@Url.Action("Index", "Urun")" class="btn btn-secondary">Geri</a>
+}

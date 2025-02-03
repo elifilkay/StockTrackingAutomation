@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model StockTrackingAutomation.Models.Musteriler
+
+@{
+    ViewBag.Title = "Müşteri Sil";
+}
+
+<h2>Müşteri Sil</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@TempData["ErrorMessage"]</strong>
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["SuccessMessage"]</strong>
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="alert alert-danger">
+        <strong>Bu müşteriyi silmek istediğinizden emin misiniz?</strong>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Müşteri Adı</th>
+            <td>@Model.Ad</td>
+        </tr>
+        <tr>
+            <th>Müşteri Soyadı</th>
+            <td>@Model.Soyad</td>
+        </tr>
+      
+    </table>
+
+    <form method="post" action="@Url.Action("Sil", "Musteri", new { id = Model.MusteriId })">
+        <button type="submit" class="btn btn-danger">Sil</button>
+        <a href="@Url.Action("Index", "Musteri")" class="btn btn-secondary">Geri</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-warning">
+        <strong>Silinecek müşteri bulunamadı.</strong>
+    </div>
+}

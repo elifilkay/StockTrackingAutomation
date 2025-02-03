@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model StockTrackingAutomation.Models.Kategoriler
+
+<div class="container mt-4">
+    <h2>Kategori Güncelle</h2>
+
+    @using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.KategoriId) <!-- Ensure KategoriId is included in the form -->
+        <div class="form-group">
+            @Html.LabelFor(m => m.KategoriAd)
+            @Html.TextBoxFor(m => m.KategoriAd, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-success">Güncelle</button>
+        @Html.ActionLink("İptal", "Index", null, new { @class = "btn btn-secondary ml-2" })
+    }
+</div>

@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model StockTrackingAutomation.Models.Urunler
+
+@{
+    ViewBag.Title = "Ürün Sil";
+}
+
+<h2>Ürün Sil</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@TempData["ErrorMessage"]</strong>
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["SuccessMessage"]</strong>
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="alert alert-danger">
+        <strong>Bu ürünü silmek istediğinizden emin misiniz?</strong>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Ürün Adı</th>
+            <td>@Model.UrunAd</td>
+        </tr>
+        <tr>
+            <th>Fiyat</th>
+            <td>@(Model.Fiyat.HasValue ? Model.Fiyat.Value.ToString("C") : "Fiyat Yok")</td>
+        </tr>
+        <tr>
+            <th>Kategori</th>
+            <td>@(Model.Kategoriler != null ? Model.Kategoriler.KategoriAd : "Kategori Yok")</td>
+        </tr>
+    </table>
+
+    <form method="post" action="@Url.Action("Sil", "Urun", new { id = Model.UrunId })">
+        <button type="submit" class="btn btn-danger">Sil</button>
+        <a href="@Url.Action("Index", "Kategori")" class="btn btn-secondary">Geri</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-warning">
+        <strong>Silinecek ürün bulunamadı.</strong>
+    </div>
+}
+

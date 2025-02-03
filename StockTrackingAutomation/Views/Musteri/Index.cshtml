@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<dynamic>
+
+@{
+    ViewBag.Title = "Müşteriler Listesi";
+}
+
+<h2>Müşteriler Listesi</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        <strong>@ViewBag.ErrorMessage</strong>
+    </div>
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">
+        <strong>@ViewBag.SuccessMessage</strong>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>MüşteriID</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>İşlemler</th>  <!-- Düzenle ve Sil işlemleri -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var musteri in Model)
+        {
+            <tr>
+                <td>@musteri.MusteriId</td>  <!-- Müşteri ID -->
+                <td>@musteri.Ad</td>  <!-- Müşteri Adı -->
+                <td>@musteri.Soyad</td>  <!-- Müşteri Soyadı -->
+                <td>
+                    @Html.ActionLink("Düzenle", "Guncelle", new { id = musteri.MusteriId }) |
+                    @Html.ActionLink("Sil", "Sil", new { id = musteri.MusteriId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Ekle")" class="btn btn-primary">Yeni Müşteri Ekle</a>  <!-- Yeni Müşteri Ekleme Butonu -->

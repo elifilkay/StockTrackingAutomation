@@ -1,0 +1,46 @@
+﻿@model StockTrackingAutomation.Models.Kategoriler
+
+@{
+    ViewBag.Title = "Kategori Sil";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h3>Kategori Sil</h3>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    else if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+                    else
+                    {
+                        <h4>Bu kategoriyi silmek istediğinizden emin misiniz?</h4>
+                        <div class="alert alert-warning">
+                            <strong>@Model.KategoriAd</strong>
+                        </div>
+                        <dl class="row">
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.KategoriAd)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.KategoriAd)
+                            </dd>
+                        </dl>
+
+                        <!-- Kategori Silme için ActionLink -->
+                        @Html.ActionLink("Sil", "Sil", new { id = Model.KategoriId }, new { @class = "btn btn-danger", @onclick = "return confirm('Silmek istediğinize emin misiniz?');" })
+                        @Html.ActionLink("İptal", "Index", null, new { @class = "btn btn-secondary" })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
